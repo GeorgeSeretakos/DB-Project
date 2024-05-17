@@ -117,62 +117,6 @@ INSERT INTO Equipment (Name, Instructions, Photo, Photo_Description) VALUES
 ('Potato Masher', 'Mash cooked potatoes and other root vegetables.', 'http://example.com/photos/potato_masher.jpg', 'Photo of a potato masher with mashed potatoes.');
 
 
-# Chef #
-
-INSERT INTO Chef (First_Name, Last_Name, Phone_Number, Birthdate, Age, Years_of_Experience, Specialization, Photo, Photo_Description) VALUES
-('Admin', 'Admin', '123-456-7890', '1980-05-15', TIMESTAMPDIFF(YEAR, '1980-05-15', CURDATE()), 15, 'Head chef', 'http://example.com/photos/admin.jpg', 'Admin'),
-('John', 'Doe', '123-456-7890', '1980-05-15', TIMESTAMPDIFF(YEAR, '1980-05-15', CURDATE()), 15, 'Head chef', 'http://example.com/photos/john_doe.jpg', 'Photo of Chef John Doe'),
-('Alice', 'Smith', '234-567-8901', '1985-10-20', TIMESTAMPDIFF(YEAR, '1985-10-20', CURDATE()), 10, 'First cook', 'http://example.com/photos/alice_smith.jpg', 'Photo of Chef Alice Smith'),
-('Michael', 'Johnson', '345-678-9012', '1976-07-08', TIMESTAMPDIFF(YEAR, '1976-07-08', CURDATE()), 20, 'Head chef', 'http://example.com/photos/michael_johnson.jpg', 'Photo of Chef Michael Johnson'),
-('Emily', 'Brown', '456-789-0123', '1990-03-25', TIMESTAMPDIFF(YEAR, '1990-03-25', CURDATE()), 8, 'Second cook', 'http://example.com/photos/emily_brown.jpg', 'Photo of Chef Emily Brown'),
-('David', 'Martinez', '567-890-1234', '1982-12-12', TIMESTAMPDIFF(YEAR, '1982-12-12', CURDATE()), 18, 'Head chef', 'http://example.com/photos/david_martinez.jpg', 'Photo of Chef David Martinez'),
-('Jessica', 'Garcia', '678-901-2345', '1970-11-30', TIMESTAMPDIFF(YEAR, '1970-11-30', CURDATE()), 30, 'Head chef', 'http://example.com/photos/jessica_garcia.jpg', 'Photo of Chef Jessica Garcia'),
-('Daniel', 'Lee', '789-012-3456', '1988-09-18', TIMESTAMPDIFF(YEAR, '1988-09-18', CURDATE()), 12, 'First cook', 'http://example.com/photos/daniel_lee.jpg', 'Photo of Chef Daniel Lee'),
-('Sophia', 'Taylor', '890-123-4567', '1983-04-05', TIMESTAMPDIFF(YEAR, '1983-04-05', CURDATE()), 17, 'First cook', 'http://example.com/photos/sophia_taylor.jpg', 'Photo of Chef Sophia Taylor'),
-('William', 'Anderson', '901-234-5678', '1978-01-28', TIMESTAMPDIFF(YEAR, '1978-01-28', CURDATE()), 25, 'Assistant chef', 'http://example.com/photos/william_anderson.jpg', 'Photo of Chef William Anderson'),
-('Olivia', 'Thomas', '012-345-6789', '1995-06-10', TIMESTAMPDIFF(YEAR, '1995-06-10', CURDATE()), 5, 'Third cook', 'http://example.com/photos/olivia_thomas.jpg', 'Photo of Chef Olivia Thomas'),
-('Grace', 'Jackson', '123-456-7890', '1987-08-15', TIMESTAMPDIFF(YEAR, '1987-08-15', CURDATE()), 14, 'Second cook', 'http://example.com/photos/grace_jackson.jpg', 'Photo of Chef Grace Jackson'),
-('Ethan', 'White', '234-567-8901', '1974-09-20', TIMESTAMPDIFF(YEAR, '1974-09-20', CURDATE()), 24, 'First cook', 'http://example.com/photos/ethan_white.jpg', 'Photo of Chef Ethan White'),
-('Emma', 'Miller', '345-678-9012', '1993-02-08', TIMESTAMPDIFF(YEAR, '1993-02-08', CURDATE()), 7, 'Second cook', 'http://example.com/photos/emma_miller.jpg', 'Photo of Chef Emma Miller'),
-('Daniel', 'Harris', '456-789-0123', '1982-06-25', TIMESTAMPDIFF(YEAR, '1982-06-25', CURDATE()), 18, 'Assistant chef', 'http://example.com/photos/daniel_harris.jpg', 'Photo of Chef Daniel Harris'),
-('Ava', 'Clark', '567-890-1234', '1990-11-30', TIMESTAMPDIFF(YEAR, '1990-11-30', CURDATE()), 12, 'Third cook', 'http://example.com/photos/ava_clark.jpg', 'Photo of Chef Ava Clark'),
-('Noah', 'Lewis', '678-901-2345', '1979-07-18', TIMESTAMPDIFF(YEAR, '1979-07-18', CURDATE()), 22, 'Head chef', 'http://example.com/photos/noah_lewis.jpg', 'Photo of Chef Noah Lewis'),
-('Mia', 'Walker', '789-012-3456', '1985-04-05', TIMESTAMPDIFF(YEAR, '1985-04-05', CURDATE()), 15, 'First cook', 'http://example.com/photos/mia_walker.jpg', 'Photo of Chef Mia Walker'),
-('James', 'Robinson', '890-123-4567', '1976-01-28', TIMESTAMPDIFF(YEAR, '1976-01-28', CURDATE()), 28, 'Head chef', 'http://example.com/photos/james_robinson.jpg', 'Photo of Chef James Robinson'),
-('Sophie', 'Young', '901-234-5678', '1992-06-10', TIMESTAMPDIFF(YEAR, '1992-06-10', CURDATE()), 8, 'Second cook', 'http://example.com/photos/sophie_young.jpg', 'Photo of Chef Sophie Young'),
-('Alexander', 'King', '012-345-6789', '1981-11-15', TIMESTAMPDIFF(YEAR, '1981-11-15', CURDATE()), 18, 'Assistant chef', 'http://example.com/photos/alexander_king.jpg', 'Photo of Chef Alexander King'),
-('Isabella', 'Wright', '123-456-7890', '1997-05-20', TIMESTAMPDIFF(YEAR, '1997-05-20', CURDATE()), 4, 'Third cook', 'http://example.com/photos/isabella_wright.jpg', 'Photo of Chef Isabella Wright'),
-('Liam', 'Evans', '234-567-8901', '1980-08-08', TIMESTAMPDIFF(YEAR, '1980-08-08', CURDATE()), 22, 'First cook', 'http://example.com/photos/liam_evans.jpg', 'Photo of Chef Liam Evans'),
-('Charlotte', 'Baker', '345-678-9012', '1988-01-15', TIMESTAMPDIFF(YEAR, '1988-01-15', CURDATE()), 12, 'Second cook', 'http://example.com/photos/charlotte_baker.jpg', 'Photo of Chef Charlotte Baker'),
-('Benjamin', 'Green', '456-789-0123', '1973-09-30', TIMESTAMPDIFF(YEAR, '1973-09-30', CURDATE()), 28, 'Head chef', 'http://example.com/photos/benjamin_green.jpg', 'Photo of Chef Benjamin Green'),
-('Amelia', 'Hill', '567-890-1234', '1993-04-18', TIMESTAMPDIFF(YEAR, '1993-04-18', CURDATE()), 7, 'Third cook', 'http://example.com/photos/amelia_hill.jpg', 'Photo of Chef Amelia Hill'),
-('Daniel', 'Hill', '678-901-2345', '1975-11-10', TIMESTAMPDIFF(YEAR, '1975-11-10', CURDATE()), 27, 'Head chef', 'http://example.com/photos/daniel_hill.jpg', 'Photo of Chef Daniel Hill'),
-('Emma', 'Carter', '789-012-3456', '1984-02-22', TIMESTAMPDIFF(YEAR, '1984-02-22', CURDATE()), 18, 'Assistant chef', 'http://example.com/photos/emma_carter.jpg', 'Photo of Chef Emma Carter'),
-('Ryan', 'Adams', '890-123-4567', '1990-07-05', TIMESTAMPDIFF(YEAR, '1990-07-05', CURDATE()), 15, 'First cook', 'http://example.com/photos/ryan_adams.jpg', 'Photo of Chef Ryan Adams'),
-('Ava', 'Russell', '901-234-5678', '1981-09-14', TIMESTAMPDIFF(YEAR, '1981-09-14', CURDATE()), 20, 'Head chef', 'http://example.com/photos/ava_russell.jpg', 'Photo of Chef Ava Russell'),
-('David', 'Ward', '012-345-6789', '1978-04-30', TIMESTAMPDIFF(YEAR, '1978-04-30', CURDATE()), 22, 'Assistant chef', 'http://example.com/photos/david_ward.jpg', 'Photo of Chef David Ward'),
-('Sophie', 'Howard', '123-456-7890', '1989-01-18', TIMESTAMPDIFF(YEAR, '1989-01-18', CURDATE()), 14, 'Second cook', 'http://example.com/photos/sophie_howard.jpg', 'Photo of Chef Sophie Howard'),
-('Jackson', 'Turner', '234-567-8901', '1983-05-08', TIMESTAMPDIFF(YEAR, '1983-05-08', CURDATE()), 18, 'Assistant chef', 'http://example.com/photos/jackson_turner.jpg', 'Photo of Chef Jackson Turner'),
-('Madison', 'Cooper', '345-678-9012', '1986-08-22', TIMESTAMPDIFF(YEAR, '1986-08-22', CURDATE()), 12, 'Third cook', 'http://example.com/photos/madison_cooper.jpg', 'Photo of Chef Madison Cooper'),
-('Logan', 'Morris', '456-789-0123', '1992-03-15', TIMESTAMPDIFF(YEAR, '1992-03-15', CURDATE()), 8, 'First cook', 'http://example.com/photos/logan_morris.jpg', 'Photo of Chef Logan Morris'),
-('Grace', 'Peterson', '567-890-1234', '1980-10-30', TIMESTAMPDIFF(YEAR, '1980-10-30', CURDATE()), 20, 'Head chef', 'http://example.com/photos/grace_peterson.jpg', 'Photo of Chef Grace Peterson'),
-('Ella', 'Kelly', '678-901-2345', '1994-06-10', TIMESTAMPDIFF(YEAR, '1994-06-10', CURDATE()), 6, 'Third cook', 'http://example.com/photos/ella_kelly.jpg', 'Photo of Chef Ella Kelly'),
-('Luke', 'Bailey', '789-012-3456', '1987-11-25', TIMESTAMPDIFF(YEAR, '1987-11-25', CURDATE()), 13, 'First cook', 'http://example.com/photos/luke_bailey.jpg', 'Photo of Chef Luke Bailey'),
-('Mia', 'Fisher', '890-123-4567', '1979-02-28', TIMESTAMPDIFF(YEAR, '1979-02-28', CURDATE()), 21, 'Assistant chef', 'http://example.com/photos/mia_fisher.jpg', 'Photo of Chef Mia Fisher'),
-('Owen', 'Bennett', '901-234-5678', '1983-07-15', TIMESTAMPDIFF(YEAR, '1983-07-15', CURDATE()), 17, 'Head chef', 'http://example.com/photos/owen_bennett.jpg', 'Photo of Chef Owen Bennett'),
-('Zoe', 'James', '012-345-6789', '1990-12-20', TIMESTAMPDIFF(YEAR, '1990-12-20', CURDATE()), 10, 'Second cook', 'http://example.com/photos/zoe_james.jpg', 'Photo of Chef Zoe James'),
-('Ethan', 'Parker', '123-456-7890', '1985-05-05', TIMESTAMPDIFF(YEAR, '1985-05-05', CURDATE()), 15, 'First cook', 'http://example.com/photos/ethan_parker.jpg', 'Photo of Chef Ethan Parker'),
-('Chloe', 'Cox', '234-567-8901', '1977-10-18', TIMESTAMPDIFF(YEAR, '1977-10-18', CURDATE()), 23, 'Head chef', 'http://example.com/photos/chloe_cox.jpg', 'Photo of Chef Chloe Cox'),
-('Gabriel', 'Richardson', '345-678-9012', '1993-03-30', TIMESTAMPDIFF(YEAR, '1993-03-30', CURDATE()), 7, 'Third cook', 'http://example.com/photos/gabriel_richardson.jpg', 'Photo of Chef Gabriel Richardson'),
-('Lily', 'Gray', '456-789-0123', '1980-08-15', TIMESTAMPDIFF(YEAR, '1980-08-15', CURDATE()), 20, 'Assistant chef', 'http://example.com/photos/lily_gray.jpg', 'Photo of Chef Lily Gray'),
-('Jack', 'Wright', '567-890-1234', '1989-04-10', TIMESTAMPDIFF(YEAR, '1989-04-10', CURDATE()), 11, 'First cook', 'http://example.com/photos/jack_wright.jpg', 'Photo of Chef Jack Wright'),
-('Avery', 'Roberts', '678-901-2345', '1982-12-25', TIMESTAMPDIFF(YEAR, '1982-12-25', CURDATE()), 18, 'Second cook', 'http://example.com/photos/avery_roberts.jpg', 'Photo of Chef Avery Roberts'),
-('Noah', 'Hill', '789-012-3456', '1988-07-20', TIMESTAMPDIFF(YEAR, '1988-07-20', CURDATE()), 12, 'Third cook', 'http://example.com/photos/noah_hill.jpg', 'Photo of Chef Noah Hill'),
-('Harper', 'Morris', '890-123-4567', '1985-02-15', TIMESTAMPDIFF(YEAR, '1985-02-15', CURDATE()), 15, 'First cook', 'http://example.com/photos/harper_morris.jpg', 'Photo of Chef Harper Morris'),
-('Matthew', 'Jenkins', '901-234-5678', '1984-11-08', TIMESTAMPDIFF(YEAR, '1984-11-08', CURDATE()), 16, 'Head chef', 'http://example.com/photos/matthew_jenkins.jpg', 'Photo of Chef Matthew Jenkins'),
-('Scarlett', 'Baker', '012-345-6789', '1981-06-22', TIMESTAMPDIFF(YEAR, '1981-06-22', CURDATE()), 19, 'Assistant chef', 'http://example.com/photos/scarlett_baker.jpg', 'Photo of Chef Scarlett Baker');
-
-
 
 # National Cusine #
 
@@ -635,7 +579,6 @@ VALUES
 (1, 8, 'Drizzle pizza with olive oil and sprinkle with salt and pepper.'),
 (1, 9, 'Slide pizza and parchment paper onto the preheated pizza stone or baking sheet in the oven.'),
 (1, 10, 'Bake pizza for 12-15 minutes until crust is golden brown and cheese is bubbly and slightly browned.');
-
 -- Chinese Mooncake
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -649,7 +592,6 @@ VALUES
 (2, 8, 'Carefully unmold each mooncake and place them on a baking sheet lined with parchment paper.'),
 (2, 9, 'Bake the mooncakes in a preheated oven at 350°F (180°C) for 15-20 minutes until golden brown and cooked through.'),
 (2, 10, 'Allow the mooncakes to cool completely before storing them in an airtight container in a cool, dry place.');
-
 -- Indian Curry
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -662,7 +604,6 @@ VALUES
 (3, 7, 'Pour in coconut milk and chicken broth, and bring to a simmer. Cook for 20-25 minutes until the sauce has thickened and the chicken is cooked through.'),
 (3, 8, 'Season with salt and pepper to taste, and adjust the consistency of the sauce as desired with more broth or coconut milk.'),
 (3, 9, 'Garnish with chopped cilantro and serve hot with steamed basmati rice or naan bread.');
-
 -- French Coq au Vin
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -674,7 +615,6 @@ VALUES
 (4, 6, 'Add fresh thyme, bay leaves, and pearl onions to the pot, and bring to a simmer. Cover and cook for 1-1.5 hours until chicken is tender and cooked through.'),
 (4, 7, 'In a separate pan, sauté mushrooms in butter until golden brown and cooked through, then add them to the pot with the chicken and vegetables.'),
 (4, 8, 'Season the coq au vin with salt and pepper to taste, and garnish with chopped parsley before serving hot.');
-
 -- Mexican Tacos
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -683,7 +623,6 @@ VALUES
 (5, 3, 'Assemble tacos by placing a spoonful of cooked filling onto each tortilla, then adding desired toppings such as shredded lettuce, diced tomatoes, chopped onions, cilantro, and cheese.'),
 (5, 4, 'Drizzle tacos with salsa, hot sauce, or lime juice, if desired.'),
 (5, 5, 'Serve tacos immediately with lime wedges on the side.');
-
 -- Japanese Cheesecake
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -698,7 +637,6 @@ VALUES
 (6, 9, 'Bake cheesecake in the preheated oven for 70-80 minutes until set and lightly golden on top.'),
 (6, 10, 'Turn off the oven and leave the cheesecake to cool in the oven with the door slightly ajar for 1-2 hours.'),
 (6, 11, 'Remove cheesecake from the oven and refrigerate for at least 4 hours or overnight before serving.');
-
 -- Thai Green Curry
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -709,7 +647,6 @@ VALUES
 (7, 5, 'Season curry with fish sauce, palm sugar, and lime juice to taste, adjusting the flavors as needed.'),
 (7, 6, 'Stir in fresh basil leaves and Thai basil leaves, if available, and remove from heat.'),
 (7, 7, 'Serve hot over steamed jasmine rice.');
-
 -- Spanish Paella
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -722,7 +659,6 @@ VALUES
 (8, 7, 'Pour in chicken broth and bring to a simmer, then arrange shrimp, mussels, and clams on top of the rice.'),
 (8, 8, 'Cover the pan with a lid or aluminum foil and simmer for 15-20 minutes until the rice is cooked and the seafood is cooked through.'),
 (8, 9, 'Garnish paella with chopped parsley and lemon wedges before serving hot directly from the pan.');
-
 -- Korean Bibimbap
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -734,7 +670,6 @@ VALUES
 (9, 6, 'To assemble, divide cooked rice among serving bowls and arrange cooked vegetables and meat on top.'),
 (9, 7, 'Place a fried egg on top of each bowl and garnish with sliced green onions and sesame seeds.'),
 (9, 8, 'Serve bibimbap hot with gochujang sauce on the side, and instruct diners to stir thoroughly before eating.');
-
 -- Vietnamese Pho
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -746,7 +681,6 @@ VALUES
 (10, 6, 'Thinly slice raw beef and arrange on top of the noodles in each bowl.'),
 (10, 7, 'Pour hot broth over the beef and noodles, ensuring the beef cooks in the hot broth.'),
 (10, 8, 'Serve pho immediately with fresh herbs such as cilantro, Thai basil, and sliced jalapeños on the side.');
-
 -- American Apple Pie
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -758,7 +692,6 @@ VALUES
 (11, 6, 'Make several slits in the top crust to allow steam to escape.'),
 (11, 7, 'Bake pie in the preheated oven for 45-50 minutes until the crust is golden brown and the filling is bubbly.'),
 (11, 8, 'Cool pie on a wire rack for at least 2 hours before serving with vanilla ice cream.');
-
 -- British Fish and Chips
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -770,7 +703,6 @@ VALUES
 (12, 6, 'While the fish is frying, parboil potatoes for 5 minutes, then drain and pat dry with paper towels.'),
 (12, 7, 'Fry potatoes in the same oil as the fish until golden and crispy, about 5-7 minutes.'),
 (12, 8, 'Season fish and chips with salt and serve hot with tartar sauce and lemon wedges.');
-
 -- German Sausage Platter
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -779,7 +711,6 @@ VALUES
 (13, 3, 'Grill sausages, turning occasionally, until they are cooked through and have grill marks, about 10-12 minutes.'),
 (13, 4, 'Meanwhile, heat sauerkraut in a saucepan over medium heat until warmed through.'),
 (13, 5, 'Serve grilled sausages hot with warmed sauerkraut and mustard, accompanied by German beer.');
-
 -- Turkish Kebab
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -789,7 +720,6 @@ VALUES
 (14, 4, 'Thread marinated lamb cubes onto skewers, leaving a small space between each piece.'),
 (14, 5, 'Grill kebabs over medium-high heat, turning occasionally, until lamb is browned and cooked through, about 10-12 minutes.'),
 (14, 6, 'Serve Turkish kebabs hot off the grill, garnished with chopped parsley and accompanied by flatbread and yogurt sauce.');
-
 -- Greek Gyro
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -801,7 +731,6 @@ VALUES
 (15, 6, 'Warm pita bread on the grill or in the oven for a few minutes.'),
 (15, 7, 'Assemble gyro sandwiches by placing sliced meat in warmed pita bread, topping with homemade tzatziki sauce, fresh vegetables, and a squeeze of lemon juice.'),
 (15, 8, 'Wrap gyro sandwiches in foil or parchment paper for easy serving and enjoy immediately.');
-
 -- Portuguese Bacalhau
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -811,7 +740,6 @@ VALUES
 (16, 4, 'In a baking dish, layer sliced potatoes, onions, and desalted cod, repeating until all ingredients are used.'),
 (16, 5, 'Drizzle olive oil over the layers and season with salt, pepper, and paprika to taste.'),
 (16, 6, 'Bake bacalhau in the preheated oven for 45-50 minutes until potatoes are tender and the top is golden brown.');
-
 -- Russian Borsch
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -821,7 +749,6 @@ VALUES
 (17, 4, 'Stir in diced potatoes and chopped cabbage, then simmer for an additional 15-20 minutes until potatoes are cooked through.'),
 (17, 5, 'Season borsch with salt, pepper, and vinegar to taste, adding a clove of minced garlic for extra flavor if desired.'),
 (17, 6, 'Serve hot borsch with a dollop of sour cream and a slice of rye bread.');
-
 -- Brazilian Feijoada
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -831,7 +758,6 @@ VALUES
 (18, 4, 'Remove pork shoulder from the pot and shred the meat, then return it to the pot with the beans and stir to combine.'),
 (18, 5, 'Season feijoada with salt, pepper, and additional spices to taste, then continue to simmer for another 30-60 minutes until flavors are well blended and the stew has thickened slightly.'),
 (18, 6, 'Serve hot feijoada accompanied by cooked white rice, orange slices, and hot sauce if desired.');
-
 -- Egyptian Koshari
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -841,7 +767,6 @@ VALUES
 (19, 4, 'Warm tomato sauce in a saucepan over medium heat, then pour it over the lentil, rice, and pasta mixture.'),
 (19, 5, 'Gently toss the mixture to combine, ensuring all ingredients are evenly coated with sauce.'),
 (19, 6, 'To serve, layer the koshari mixture in bowls, topping each portion with crispy fried onions and a drizzle of garlic vinegar and hot sauce.');
-
 -- South African Bobotie
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -853,7 +778,6 @@ VALUES
 (20, 6, 'Pour the egg mixture over the meat in the baking dish, ensuring it is evenly distributed.'),
 (20, 7, 'Bake bobotie in the preheated oven for 30-35 minutes until the egg topping is set and lightly golden brown on top.'),
 (20, 8, 'Serve hot bobotie slices with yellow rice and chutney or a side salad.');
-
 -- Moroccan Tagine
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -864,7 +788,6 @@ VALUES
 (21, 5, 'Pour in broth or water until ingredients are just covered, then bring to a simmer.'),
 (21, 6, 'Cover tagine or pot with its lid and reduce heat to low, allowing the stew to simmer gently for 1.5 to 2 hours until meat is tender and flavors have melded together.'),
 (21, 7, 'Serve Moroccan tagine hot with couscous or crusty bread.');
-
 -- Australian Meat Pie
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -876,7 +799,6 @@ VALUES
 (22, 6, 'Top each pie with another layer of puff pastry, crimping the edges to seal and cutting a few slits in the top to allow steam to escape.'),
 (22, 7, 'Bake meat pies in the preheated oven for 25-30 minutes until pastry is golden brown and filling is bubbling hot.'),
 (22, 8, 'Serve Australian meat pies hot with tomato sauce on the side.');
-
 -- Canadian Poutine
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -887,7 +809,6 @@ VALUES
 (23, 5, 'Top the hot fries with fresh cheese curds, allowing the cheese to slightly melt from the heat of the fries.'),
 (23, 6, 'Pour the hot homemade gravy over the cheese curds and fries, ensuring all the cheese and fries are evenly coated.'),
 (23, 7, 'Serve Canadian poutine immediately while hot, garnished with chopped green onions if desired.');
-
 -- Argentinian Asado
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -898,7 +819,6 @@ VALUES
 (24, 5, 'As the meats cook, monitor the fire and adjust as needed to maintain a steady cooking temperature.'),
 (24, 6, 'Once the meats are cooked to perfection, remove them from the grill and let them rest for a few minutes before slicing or serving.'),
 (24, 7, 'Serve Argentinian asado hot off the grill with chimichurri sauce on the side for dipping or drizzling.');
-
 -- Belgian Waffles
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -910,7 +830,6 @@ VALUES
 (25, 6, 'Pour enough batter onto the hot waffle iron to cover the waffle grid, then close the lid and cook until waffles are golden and crisp.'),
 (25, 7, 'Carefully remove the cooked waffles from the iron and place them on a wire rack to cool slightly or serve them immediately.'),
 (25, 8, 'Serve Belgian waffles hot, dusted with powdered sugar and topped with fresh strawberries or your favorite toppings.');
-
 -- Italian Risotto
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -921,7 +840,6 @@ VALUES
 (26, 5, 'Continue this process of adding broth and stirring until the rice is creamy and tender with a slight bite in the center, which should take about 18-20 minutes.'),
 (26, 6, 'Stir in grated Parmesan cheese and butter until melted and incorporated into the risotto, then season with salt and pepper to taste.'),
 (26, 7, 'Remove the risotto from heat and let it rest for a few minutes before serving to allow the flavors to meld together.');
-
 -- Chinese Dumplings
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -931,7 +849,6 @@ VALUES
 (27, 4, 'Repeat the process with the remaining wrappers and filling until all dumplings are assembled.'),
 (27, 5, 'To cook the dumplings, you can either steam, boil, or pan-fry them according to your preference.'),
 (27, 6, 'Serve Chinese dumplings hot, accompanied by soy sauce or your favorite dipping sauce.');
-
 -- Indian Samosa
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -943,7 +860,6 @@ VALUES
 (28, 6, 'Fill each cone with a spoonful of the prepared potato filling, then seal the top edge of the cone tightly to enclose the filling completely.'),
 (28, 7, 'Heat oil in a deep fryer or heavy-bottomed pot to 350°F (175°C), then fry the samosas in batches until golden brown and crispy, turning occasionally for even cooking.'),
 (28, 8, 'Drain fried samosas on paper towels to remove excess oil, then serve them hot with tamarind chutney or mint chutney for dipping.');
-
 -- French Ratatouille
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -953,7 +869,6 @@ VALUES
 (29, 4, 'Drizzle olive oil over the assembled ratatouille, then cover the dish with aluminum foil.'),
 (29, 5, 'Bake the ratatouille in the preheated oven for 45-50 minutes, then remove the foil and continue baking for an additional 15-20 minutes until the vegetables are tender and slightly caramelized on the edges.'),
 (29, 6, 'Remove the ratatouille from the oven and let it cool for a few minutes before serving as a side dish or main course.');
-
 -- Mexican Enchiladas
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -964,7 +879,6 @@ VALUES
 (30, 5, 'Sprinkle grated cheese over the top of the enchiladas for added flavor and richness.'),
 (30, 6, 'Bake the enchiladas in the preheated oven for 20-25 minutes, or until the cheese is melted and bubbly and the enchiladas are heated through.'),
 (30, 7, 'Garnish the baked enchiladas with a dollop of sour cream and chopped fresh cilantro before serving.');
-
 -- Japanese Mochi
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -974,7 +888,6 @@ VALUES
 (31, 4, 'Divide the mochi dough into small portions and shape each portion into a ball, flattening it slightly to form a disc.'),
 (31, 5, 'Place a small spoonful of sweet red bean filling in the center of each mochi disc, then carefully pinch and seal the edges together to enclose the filling completely.'),
 (31, 6, 'Serve Japanese mochi immediately while still warm and soft, accompanied by a cup of hot green tea for a traditional treat.');
-
 -- Thai Tom Yum Goong
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -984,7 +897,6 @@ VALUES
 (32, 4, 'Season the soup with fish sauce, lime juice, and a pinch of sugar to balance the flavors, adjusting the seasoning to taste.'),
 (32, 5, 'Simmer the tom yum goong soup for another 5-7 minutes, or until the shrimp are cooked through and the flavors have melded together nicely.'),
 (32, 6, "Serve Thai tom yum goong hot, garnished with fresh cilantro leaves and thinly sliced Thai bird's eye chilies for extra heat, if desired.");
-
 -- Spanish Churros
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -994,7 +906,6 @@ VALUES
 (33, 4, 'Fry the churros in batches until golden brown and crispy, then remove them from the oil using a slotted spoon and drain them on paper towels to remove excess oil.'),
 (33, 5, 'Toss the fried churros in a mixture of cinnamon and sugar while still warm, ensuring they are evenly coated with the sweet mixture.'),
 (33, 6, 'Serve Spanish churros hot with a cup of thick hot chocolate for dipping.');
-
 -- Korean Kimchi Stew
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1004,7 +915,6 @@ VALUES
 (34, 4, 'Simmer the kimchi stew over medium heat for 20-30 minutes, or until the pork is cooked through and the flavors have developed.'),
 (34, 5, 'Taste the stew and adjust the seasoning with soy sauce, fish sauce, or a pinch of sugar if needed, to balance the flavors to your liking.'),
 (34, 6, 'Serve Korean kimchi stew hot in individual bowls, garnished with chopped green onions and a sprinkle of toasted sesame seeds, if desired.');
-
 -- Vietnamese Banh Mi
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1013,7 +923,6 @@ VALUES
 (35, 3, 'Add fresh cucumber slices, jalapeno peppers, and cilantro leaves on top of the other fillings to add crunch and freshness to the banh mi.'),
 (35, 4, 'Close the baguette, pressing gently to compact the fillings together, then slice the banh mi into smaller portions for serving.'),
 (35, 5, 'Serve Vietnamese banh mi immediately, either as a handheld street food snack or wrapped in parchment paper for a portable meal.');
-
 -- American Brownies
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1024,7 +933,6 @@ VALUES
 (36, 5, 'Pour the brownie batter into the prepared baking pan and spread it out evenly with a spatula.'),
 (36, 6, 'Bake the brownies in the preheated oven for 25-30 minutes, or until the top is set and a toothpick inserted into the center comes out with moist crumbs attached, but not wet.'),
 (36, 7, 'Remove the brownies from the oven and let them cool completely in the pan before slicing them into squares and serving.');
-
 -- British Shepherd’s Pie
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1035,7 +943,6 @@ VALUES
 (37, 5, 'Sprinkle grated cheese over the mashed potatoes for added flavor and richness, if desired.'),
 (37, 6, "Bake the shepherd's pie in the preheated oven for 25-30 minutes, or until the top is golden brown and the filling is bubbling around the edges."),
 (37, 7, "Remove the shepherd's pie from the oven and let it cool for a few minutes before serving hot.");
-
 -- German Pretzel
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1045,7 +952,6 @@ VALUES
 (38, 4, 'Carefully drop each pretzel into the simmering water for about 30 seconds, then remove them with a slotted spoon and place them onto the prepared baking sheet.'),
 (38, 5, 'Brush each pretzel with beaten egg wash and sprinkle with coarse salt, then bake in the preheated oven for 12-15 minutes or until golden brown and crisp.'),
 (38, 6, 'Remove the pretzels from the oven and let them cool for a few minutes before serving warm with mustard or beer.');
-
 -- Turkish Baklava
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1057,7 +963,6 @@ VALUES
 (39, 6, 'Bake the baklava in the preheated oven for 40-45 minutes or until golden brown and crispy.'),
 (39, 7, 'While the baklava is still hot, pour cooled syrup or honey over the top, allowing it to seep into the cuts and layers of the pastry.'),
 (39, 8, 'Let the baklava cool completely in the pan before serving, allowing the flavors to develop.');
-
 -- Greek Salad
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1066,7 +971,6 @@ VALUES
 (40, 3, 'Toss the salad gently to combine all the ingredients and evenly distribute the dressing and seasonings.'),
 (40, 4, 'Just before serving, squeeze fresh lemon juice over the salad to add brightness and zestiness to the flavors.'),
 (40, 5, 'Serve Greek salad immediately as a refreshing appetizer or side dish, garnished with fresh oregano leaves if desired.');
-
 -- Portuguese Caldo Verde
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1076,7 +980,6 @@ VALUES
 (41, 4, 'Using an immersion blender or potato masher, partially blend the soup to create a thick and creamy base with some potato chunks remaining for texture.'),
 (41, 5, 'Stir in thinly sliced kale leaves and simmer for an additional 5-10 minutes until the kale is wilted and tender, then season the soup with salt and pepper to taste.'),
 (41, 6, 'Serve Portuguese caldo verde hot, topped with the reserved crispy chorizo and accompanied by slices of cornbread for dipping.');
-
 -- Russian Pelmeni
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1086,7 +989,6 @@ VALUES
 (42, 4, 'Bring a large pot of salted water to a boil, then add the pelmeni in batches, cooking until they float to the surface, which should take about 5-7 minutes.'),
 (42, 5, 'Using a slotted spoon, transfer the cooked pelmeni to a serving dish or bowl, then repeat the cooking process with the remaining batches.'),
 (42, 6, 'Serve Russian pelmeni hot, accompanied by a dollop of sour cream or your favorite dipping sauce.');
-
 -- Brazilian Coxinha
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1098,7 +1000,6 @@ VALUES
 (43, 6, 'Dip each coxinha into the egg wash, ensuring it is coated evenly, then roll it in breadcrumbs to coat the outside completely.'),
 (43, 7, 'Heat oil in a deep fryer or heavy-bottomed pot to 350°F (175°C), then fry the coxinhas in batches until golden brown and crispy, turning them occasionally for even cooking.'),
 (43, 8, 'Transfer the fried coxinhas to a plate lined with paper towels to drain excess oil, then serve them hot as a delicious snack or appetizer.');
-
 -- Egyptian Ful Medames
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1110,7 +1011,6 @@ VALUES
 (44, 6, 'Once the beans are cooked to your desired tenderness, drain them well and transfer them to a serving bowl or dish.'),
 (44, 7, 'Pour the prepared seasoning mixture over the cooked beans and toss gently to coat them evenly with the flavorful spices and aromatics.'),
 (44, 8, 'Serve Egyptian ful medames hot, garnished with fresh parsley, chopped tomatoes, sliced boiled eggs, and a drizzle of olive oil for extra richness and flavor.');
-
 -- South African Chakalaka
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1120,7 +1020,6 @@ VALUES
 (45, 4, 'Continue cooking the vegetables, stirring occasionally, until they are tender but still slightly crisp, and the flavors have melded together, which should take about 15-20 minutes.'),
 (45, 5, 'Once cooked, remove the skillet from heat and let the chakalaka cool slightly before serving, allowing the flavors to develop further.'),
 (45, 6, 'Serve South African chakalaka either hot or cold as a flavorful relish or side dish, alongside bread, pap, or your favorite stews and grilled meats.');
-
 -- Moroccan Couscous
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1129,7 +1028,6 @@ VALUES
 (46, 3, 'Cover the bowl tightly with plastic wrap or a clean kitchen towel and let the couscous steam for about 5-10 minutes, allowing the grains to absorb the liquid and swell.'),
 (46, 4, 'Once the couscous has absorbed the liquid, fluff it gently with a fork to separate the grains and remove any clumps, then stir in a knob of butter for added richness and flavor.'),
 (46, 5, 'Serve Moroccan couscous hot, accompanied by a flavorful vegetable or meat stew spooned over the top, allowing the couscous to soak up the delicious sauce and flavors.');
-
 -- Australian Lamingtons
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1140,7 +1038,6 @@ VALUES
 (47, 5, 'Place desiccated coconut in a shallow dish or bowl, then dip each cake square into the chocolate syrup, allowing any excess to drip off before rolling the coated cake in the coconut to cover it completely.'),
 (47, 6, 'Repeat the process with the remaining cake squares until all are coated in chocolate and coconut, then transfer them to a clean tray and refrigerate until the chocolate sets and the lamingtons are firm.'),
 (47, 7, 'Serve Australian lamingtons at room temperature as a delicious sweet treat, perfect for morning or afternoon tea, accompanied by a cup of coffee or tea.');
-
 -- Canadian Tourtière
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1153,7 +1050,6 @@ VALUES
 (48, 7, 'Use a sharp knife to cut a few small slits or vents in the top crust to allow steam to escape during baking, then brush the surface lightly with beaten egg or milk for a golden finish.'),
 (48, 8, 'Bake the tourtières in a preheated oven according to your pie crust recipe or package instructions, until the crust is golden and crisp, and the filling is heated through, which should take about 30-40 minutes.'),
 (48, 9, 'Remove the baked tourtières from the oven and let them cool for a few minutes before slicing and serving, accompanied by ketchup, chutney, or your favorite condiments.');
-
 -- Argentinian Empanadas
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1164,7 +1060,6 @@ VALUES
 (49, 5, 'Arrange the filled and sealed empanadas on a baking sheet or tray lined with parchment paper, leaving a little space between each one to allow for even baking.'),
 (49, 6, 'Brush the tops of the empanadas lightly with beaten egg or milk for a golden finish, then bake them in a preheated oven until golden and crisp, which should take about 20-25 minutes.'),
 (49, 7, 'Remove the baked empanadas from the oven and let them cool slightly before serving, allowing the filling to set and the crust to crisp up.');
-
 -- Belgian Speculoos
 INSERT INTO Steps (ID_Recipe, Step_Number, Description)
 VALUES
@@ -1176,6 +1071,63 @@ VALUES
 (50, 6, 'Bake the speculoos cookies in a preheated oven until golden and crisp around the edges, which should take about 10-12 minutes depending on their size and thickness.'),
 (50, 7, 'Remove the baked speculoos cookies from the oven and let them cool on the baking sheet for a few minutes before transferring them to a wire rack to cool completely.'),
 (50, 8, 'Serve Belgian speculoos cookies at room temperature as a delicious sweet treat, perfect for enjoying with a cup of coffee or tea.');
+
+
+# Chef #
+
+INSERT INTO Chef (First_Name, Last_Name, Phone_Number, Birthdate, Age, Years_of_Experience, Specialization, Photo, Photo_Description) VALUES
+('Admin', 'Admin', '123-456-7890', '1980-05-15', TIMESTAMPDIFF(YEAR, '1980-05-15', CURDATE()), 15, 'Head chef', 'http://example.com/photos/admin.jpg', 'Admin'),
+('John', 'Doe', '123-456-7890', '1980-05-15', TIMESTAMPDIFF(YEAR, '1980-05-15', CURDATE()), 15, 'Head chef', 'http://example.com/photos/john_doe.jpg', 'Photo of Chef John Doe'),
+('Alice', 'Smith', '234-567-8901', '1985-10-20', TIMESTAMPDIFF(YEAR, '1985-10-20', CURDATE()), 10, 'First cook', 'http://example.com/photos/alice_smith.jpg', 'Photo of Chef Alice Smith'),
+('Michael', 'Johnson', '345-678-9012', '1976-07-08', TIMESTAMPDIFF(YEAR, '1976-07-08', CURDATE()), 20, 'Head chef', 'http://example.com/photos/michael_johnson.jpg', 'Photo of Chef Michael Johnson'),
+('Emily', 'Brown', '456-789-0123', '1990-03-25', TIMESTAMPDIFF(YEAR, '1990-03-25', CURDATE()), 8, 'Second cook', 'http://example.com/photos/emily_brown.jpg', 'Photo of Chef Emily Brown'),
+('David', 'Martinez', '567-890-1234', '1982-12-12', TIMESTAMPDIFF(YEAR, '1982-12-12', CURDATE()), 18, 'Head chef', 'http://example.com/photos/david_martinez.jpg', 'Photo of Chef David Martinez'),
+('Jessica', 'Garcia', '678-901-2345', '1970-11-30', TIMESTAMPDIFF(YEAR, '1970-11-30', CURDATE()), 30, 'Head chef', 'http://example.com/photos/jessica_garcia.jpg', 'Photo of Chef Jessica Garcia'),
+('Daniel', 'Lee', '789-012-3456', '1988-09-18', TIMESTAMPDIFF(YEAR, '1988-09-18', CURDATE()), 12, 'First cook', 'http://example.com/photos/daniel_lee.jpg', 'Photo of Chef Daniel Lee'),
+('Sophia', 'Taylor', '890-123-4567', '1983-04-05', TIMESTAMPDIFF(YEAR, '1983-04-05', CURDATE()), 17, 'First cook', 'http://example.com/photos/sophia_taylor.jpg', 'Photo of Chef Sophia Taylor'),
+('William', 'Anderson', '901-234-5678', '1978-01-28', TIMESTAMPDIFF(YEAR, '1978-01-28', CURDATE()), 25, 'Assistant chef', 'http://example.com/photos/william_anderson.jpg', 'Photo of Chef William Anderson'),
+('Olivia', 'Thomas', '012-345-6789', '1995-06-10', TIMESTAMPDIFF(YEAR, '1995-06-10', CURDATE()), 5, 'Third cook', 'http://example.com/photos/olivia_thomas.jpg', 'Photo of Chef Olivia Thomas'),
+('Grace', 'Jackson', '123-456-7890', '1987-08-15', TIMESTAMPDIFF(YEAR, '1987-08-15', CURDATE()), 14, 'Second cook', 'http://example.com/photos/grace_jackson.jpg', 'Photo of Chef Grace Jackson'),
+('Ethan', 'White', '234-567-8901', '1974-09-20', TIMESTAMPDIFF(YEAR, '1974-09-20', CURDATE()), 24, 'First cook', 'http://example.com/photos/ethan_white.jpg', 'Photo of Chef Ethan White'),
+('Emma', 'Miller', '345-678-9012', '1993-02-08', TIMESTAMPDIFF(YEAR, '1993-02-08', CURDATE()), 7, 'Second cook', 'http://example.com/photos/emma_miller.jpg', 'Photo of Chef Emma Miller'),
+('Daniel', 'Harris', '456-789-0123', '1982-06-25', TIMESTAMPDIFF(YEAR, '1982-06-25', CURDATE()), 18, 'Assistant chef', 'http://example.com/photos/daniel_harris.jpg', 'Photo of Chef Daniel Harris'),
+('Ava', 'Clark', '567-890-1234', '1990-11-30', TIMESTAMPDIFF(YEAR, '1990-11-30', CURDATE()), 12, 'Third cook', 'http://example.com/photos/ava_clark.jpg', 'Photo of Chef Ava Clark'),
+('Noah', 'Lewis', '678-901-2345', '1979-07-18', TIMESTAMPDIFF(YEAR, '1979-07-18', CURDATE()), 22, 'Head chef', 'http://example.com/photos/noah_lewis.jpg', 'Photo of Chef Noah Lewis'),
+('Mia', 'Walker', '789-012-3456', '1985-04-05', TIMESTAMPDIFF(YEAR, '1985-04-05', CURDATE()), 15, 'First cook', 'http://example.com/photos/mia_walker.jpg', 'Photo of Chef Mia Walker'),
+('James', 'Robinson', '890-123-4567', '1976-01-28', TIMESTAMPDIFF(YEAR, '1976-01-28', CURDATE()), 28, 'Head chef', 'http://example.com/photos/james_robinson.jpg', 'Photo of Chef James Robinson'),
+('Sophie', 'Young', '901-234-5678', '1992-06-10', TIMESTAMPDIFF(YEAR, '1992-06-10', CURDATE()), 8, 'Second cook', 'http://example.com/photos/sophie_young.jpg', 'Photo of Chef Sophie Young'),
+('Alexander', 'King', '012-345-6789', '1981-11-15', TIMESTAMPDIFF(YEAR, '1981-11-15', CURDATE()), 18, 'Assistant chef', 'http://example.com/photos/alexander_king.jpg', 'Photo of Chef Alexander King'),
+('Isabella', 'Wright', '123-456-7890', '1997-05-20', TIMESTAMPDIFF(YEAR, '1997-05-20', CURDATE()), 4, 'Third cook', 'http://example.com/photos/isabella_wright.jpg', 'Photo of Chef Isabella Wright'),
+('Liam', 'Evans', '234-567-8901', '1980-08-08', TIMESTAMPDIFF(YEAR, '1980-08-08', CURDATE()), 22, 'First cook', 'http://example.com/photos/liam_evans.jpg', 'Photo of Chef Liam Evans'),
+('Charlotte', 'Baker', '345-678-9012', '1988-01-15', TIMESTAMPDIFF(YEAR, '1988-01-15', CURDATE()), 12, 'Second cook', 'http://example.com/photos/charlotte_baker.jpg', 'Photo of Chef Charlotte Baker'),
+('Benjamin', 'Green', '456-789-0123', '1973-09-30', TIMESTAMPDIFF(YEAR, '1973-09-30', CURDATE()), 28, 'Head chef', 'http://example.com/photos/benjamin_green.jpg', 'Photo of Chef Benjamin Green'),
+('Amelia', 'Hill', '567-890-1234', '1993-04-18', TIMESTAMPDIFF(YEAR, '1993-04-18', CURDATE()), 7, 'Third cook', 'http://example.com/photos/amelia_hill.jpg', 'Photo of Chef Amelia Hill'),
+('Daniel', 'Hill', '678-901-2345', '1975-11-10', TIMESTAMPDIFF(YEAR, '1975-11-10', CURDATE()), 27, 'Head chef', 'http://example.com/photos/daniel_hill.jpg', 'Photo of Chef Daniel Hill'),
+('Emma', 'Carter', '789-012-3456', '1984-02-22', TIMESTAMPDIFF(YEAR, '1984-02-22', CURDATE()), 18, 'Assistant chef', 'http://example.com/photos/emma_carter.jpg', 'Photo of Chef Emma Carter'),
+('Ryan', 'Adams', '890-123-4567', '1990-07-05', TIMESTAMPDIFF(YEAR, '1990-07-05', CURDATE()), 15, 'First cook', 'http://example.com/photos/ryan_adams.jpg', 'Photo of Chef Ryan Adams'),
+('Ava', 'Russell', '901-234-5678', '1981-09-14', TIMESTAMPDIFF(YEAR, '1981-09-14', CURDATE()), 20, 'Head chef', 'http://example.com/photos/ava_russell.jpg', 'Photo of Chef Ava Russell'),
+('David', 'Ward', '012-345-6789', '1978-04-30', TIMESTAMPDIFF(YEAR, '1978-04-30', CURDATE()), 22, 'Assistant chef', 'http://example.com/photos/david_ward.jpg', 'Photo of Chef David Ward'),
+('Sophie', 'Howard', '123-456-7890', '1989-01-18', TIMESTAMPDIFF(YEAR, '1989-01-18', CURDATE()), 14, 'Second cook', 'http://example.com/photos/sophie_howard.jpg', 'Photo of Chef Sophie Howard'),
+('Jackson', 'Turner', '234-567-8901', '1983-05-08', TIMESTAMPDIFF(YEAR, '1983-05-08', CURDATE()), 18, 'Assistant chef', 'http://example.com/photos/jackson_turner.jpg', 'Photo of Chef Jackson Turner'),
+('Madison', 'Cooper', '345-678-9012', '1986-08-22', TIMESTAMPDIFF(YEAR, '1986-08-22', CURDATE()), 12, 'Third cook', 'http://example.com/photos/madison_cooper.jpg', 'Photo of Chef Madison Cooper'),
+('Logan', 'Morris', '456-789-0123', '1992-03-15', TIMESTAMPDIFF(YEAR, '1992-03-15', CURDATE()), 8, 'First cook', 'http://example.com/photos/logan_morris.jpg', 'Photo of Chef Logan Morris'),
+('Grace', 'Peterson', '567-890-1234', '1980-10-30', TIMESTAMPDIFF(YEAR, '1980-10-30', CURDATE()), 20, 'Head chef', 'http://example.com/photos/grace_peterson.jpg', 'Photo of Chef Grace Peterson'),
+('Ella', 'Kelly', '678-901-2345', '1994-06-10', TIMESTAMPDIFF(YEAR, '1994-06-10', CURDATE()), 6, 'Third cook', 'http://example.com/photos/ella_kelly.jpg', 'Photo of Chef Ella Kelly'),
+('Luke', 'Bailey', '789-012-3456', '1987-11-25', TIMESTAMPDIFF(YEAR, '1987-11-25', CURDATE()), 13, 'First cook', 'http://example.com/photos/luke_bailey.jpg', 'Photo of Chef Luke Bailey'),
+('Mia', 'Fisher', '890-123-4567', '1979-02-28', TIMESTAMPDIFF(YEAR, '1979-02-28', CURDATE()), 21, 'Assistant chef', 'http://example.com/photos/mia_fisher.jpg', 'Photo of Chef Mia Fisher'),
+('Owen', 'Bennett', '901-234-5678', '1983-07-15', TIMESTAMPDIFF(YEAR, '1983-07-15', CURDATE()), 17, 'Head chef', 'http://example.com/photos/owen_bennett.jpg', 'Photo of Chef Owen Bennett'),
+('Zoe', 'James', '012-345-6789', '1990-12-20', TIMESTAMPDIFF(YEAR, '1990-12-20', CURDATE()), 10, 'Second cook', 'http://example.com/photos/zoe_james.jpg', 'Photo of Chef Zoe James'),
+('Ethan', 'Parker', '123-456-7890', '1985-05-05', TIMESTAMPDIFF(YEAR, '1985-05-05', CURDATE()), 15, 'First cook', 'http://example.com/photos/ethan_parker.jpg', 'Photo of Chef Ethan Parker'),
+('Chloe', 'Cox', '234-567-8901', '1977-10-18', TIMESTAMPDIFF(YEAR, '1977-10-18', CURDATE()), 23, 'Head chef', 'http://example.com/photos/chloe_cox.jpg', 'Photo of Chef Chloe Cox'),
+('Gabriel', 'Richardson', '345-678-9012', '1993-03-30', TIMESTAMPDIFF(YEAR, '1993-03-30', CURDATE()), 7, 'Third cook', 'http://example.com/photos/gabriel_richardson.jpg', 'Photo of Chef Gabriel Richardson'),
+('Lily', 'Gray', '456-789-0123', '1980-08-15', TIMESTAMPDIFF(YEAR, '1980-08-15', CURDATE()), 20, 'Assistant chef', 'http://example.com/photos/lily_gray.jpg', 'Photo of Chef Lily Gray'),
+('Jack', 'Wright', '567-890-1234', '1989-04-10', TIMESTAMPDIFF(YEAR, '1989-04-10', CURDATE()), 11, 'First cook', 'http://example.com/photos/jack_wright.jpg', 'Photo of Chef Jack Wright'),
+('Avery', 'Roberts', '678-901-2345', '1982-12-25', TIMESTAMPDIFF(YEAR, '1982-12-25', CURDATE()), 18, 'Second cook', 'http://example.com/photos/avery_roberts.jpg', 'Photo of Chef Avery Roberts'),
+('Noah', 'Hill', '789-012-3456', '1988-07-20', TIMESTAMPDIFF(YEAR, '1988-07-20', CURDATE()), 12, 'Third cook', 'http://example.com/photos/noah_hill.jpg', 'Photo of Chef Noah Hill'),
+('Harper', 'Morris', '890-123-4567', '1985-02-15', TIMESTAMPDIFF(YEAR, '1985-02-15', CURDATE()), 15, 'First cook', 'http://example.com/photos/harper_morris.jpg', 'Photo of Chef Harper Morris'),
+('Matthew', 'Jenkins', '901-234-5678', '1984-11-08', TIMESTAMPDIFF(YEAR, '1984-11-08', CURDATE()), 16, 'Head chef', 'http://example.com/photos/matthew_jenkins.jpg', 'Photo of Chef Matthew Jenkins'),
+('Scarlett', 'Baker', '012-345-6789', '1981-06-22', TIMESTAMPDIFF(YEAR, '1981-06-22', CURDATE()), 19, 'Assistant chef', 'http://example.com/photos/scarlett_baker.jpg', 'Photo of Chef Scarlett Baker');
+
 
 # User #
 

@@ -1,6 +1,9 @@
+-- Primary Instructions
 CREATE DATABASE IF NOT EXISTS MasterChef;
-USE MasterChef;
+USE MasterChef;	-- Must be executed every time before using the db
 
+
+-- Table creation
 CREATE TABLE National_Cusine (
     ID_National_Cusine INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(255) NOT NULL UNIQUE,
@@ -200,6 +203,18 @@ CREATE TABLE Rating (
     FOREIGN KEY (ID_Judge) REFERENCES Chef(ID_Chef) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE Episode_Chef_Recipe_National_Cusine (
+	ID_Episode INT NOT NULL,
+    ID_Chef INT NOT NULL,
+    ID_Recipe INT NOT NULL,
+    ID_National_Cusine INT NOT NULL,
+    PRIMARY KEY (ID_Episode, ID_Chef, ID_Recipe, ID_National_Cusine),
+    FOREIGN KEY (ID_Episode) REFERENCES Episode(ID_Episode) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (ID_Chef) REFERENCES Chef(ID_Chef) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (ID_Recipe) REFERENCES Recipe(ID_Recipe) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (ID_National_Cusine) REFERENCES National_Cusine(ID_National_Cusine) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
 CREATE TABLE User (
     ID_User INT AUTO_INCREMENT PRIMARY KEY,
     Username VARCHAR(255) NOT NULL UNIQUE,
@@ -209,6 +224,24 @@ CREATE TABLE User (
     FOREIGN KEY (ID_Chef) REFERENCES Chef(ID_Chef) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+
+-- Index Creation
+CREATE INDEX idx_name ON National_Cusine (Name);
+CREATE INDEX idx_release_date ON Episode (Release_Date);
+CREATE INDEX idx_ID_Chef ON Episode_chef(ID_Chef);
+CREATE INDEX idx_Age ON Chef(Age);
+CREATE INDEX idx_ID_Chef ON Recipe_Chef(ID_Chef);
+CREATE INDEX idx_Name ON Tags(Name);
+CREATE INDEX idx_ID_Recipe ON Nutritional_Value(ID_Recipe);
+CREATE INDEX idx_ID_National_Cusine ON Episode_National_Cusine(ID_National_Cusine);
+CREATE INDEX idx_ID_Judge ON Rating(ID_Judge);
+CREATE INDEX idx_ID_Chef ON Rating(ID_Chef);
+CREATE INDEX idx_Years_of_Experience ON Chef(Years_of_Experience);
+CREATE INDEX idx_ID_Thematic_Unit ON Recipe_Thematic_Unit(ID_Thematic_Unit);
+CREATE INDEX idx_ID_Food_Category ON Ingredient(ID_Food_Category);
+
+
+-- Table deletion (must be deleted is the following order)
 DROP TABLE IF EXISTS National_Cusine;
 DROP TABLE IF EXISTS Recipe;
 DROP TABLE IF EXISTS Tags;
@@ -231,6 +264,8 @@ DROP TABLE IF EXISTS Episode_National_Cusine;
 DROP TABLE IF EXISTS Episode_Chef;
 DROP TABLE IF EXISTS Episode_Recipe;
 DROP TABLE IF EXISTS Rating;
+DROP TABLE IF EXISTS Episode_Chef_Recipe_National_Cusine;
 DROP TABLE IF EXISTS User;
 
+-- Database deletion (this action cannot be undone)
 DROP DATABASE masterchef;

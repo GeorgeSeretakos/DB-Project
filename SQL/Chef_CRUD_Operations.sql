@@ -1,4 +1,7 @@
 SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+-- In every procedure, we must insert the user_id in the last place
+-- so as to check if the cuurent user has access and if so to what info
+
 
 -- GET PROCEDURES
 DELIMITER $$

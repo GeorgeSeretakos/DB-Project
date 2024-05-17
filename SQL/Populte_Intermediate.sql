@@ -314,10 +314,10 @@ INSERT INTO Recipe_Thematic_Unit (ID_Thematic_Unit, ID_Recipe) VALUES
 -- Healthy Bowls: Focused on nutritious and balanced meals
 (10, 5), (10, 9), (10, 10), (10, 32), (10, 36), (10, 42);
 
+
 # Chef and Thematic Units #
 
 INSERT INTO National_Cusine_Chef (ID_National_Cusine, ID_Chef) VALUES
-(1, 1), (5, 1), 				-- Chef 1 is associated with Italian and Mexican cuisines
 (2, 2), (6, 2), (10, 2), 		-- Chef 2 is associated with Chinese, Japanese, and Vietnamese cuisines
 (3, 3), (7, 3), 				-- Chef 3 is associated with Indian and Thai cuisines
 (4, 4), 						-- Chef 4 is associated with French cuisine
