@@ -326,6 +326,29 @@ async function checkParticipation(db, currentEpisodeNumber, entityIds, entityTab
     }
 }
 
+async function assignRatings(db, episodeId, chefs, judges) {
+    try {
+        for (const chefId of chefs) {
+            for (const judgeId of judges) {
+                // Generate a random rating between 1 and 5
+                const rating = Math.floor(Math.random() * 5) + 1;
+
+                // Prepare the SQL query to insert the rating
+                const query = `
+                    INSERT INTO Rating (ID_Chef, ID_Episode, ID_Judge, Rating)
+                    VALUES (?, ?, ?, ?);
+                `;
+
+                // Execute the query with the respective values
+                await db.execute(query, [chefId, episodeId, judgeId, rating]);
+            }
+        }
+        console.log("Ratings successfully assigned for episode " + episodeId);
+    } catch (error) {
+        console.error("Error assigning ratings: ", error);
+        throw error;  // Propagate the error to be handled upstream
+    }
+}
 
 
 
@@ -356,6 +379,9 @@ async function runContest(year, releaseDate) {
 
         // Add judges to the episode
         const judges = await findJudgesForEpisode(db, episodeId, chefs);
+
+        // Add ratings from all 3 judges to each chef
+        await assignRatings(db, episodeId, chefs, judges);
 
         const chefCuisineRecipe = await assignRecipesToEpisode(db, episodeId, chefCusinePairs);
         console.log("Final result: \n", chefCuisineRecipe);
@@ -415,25 +441,145 @@ async function test() {
     }
 }
 
-async function insert50Episodes() {
-        const startYear = 2000;
-        const endYear = 2005;
-        const episodesPerYear = 10;
+async function insertMultipleEpisodes() {
+    const startYear = 2000;
+    const endYear = 2005;
+    const episodesPerYear = 10;
 
-        for (let year = startYear; year <= endYear; year++) {
-            for (let episode = 1; episode <= episodesPerYear; episode++) {
-                const month = String(episode).padStart(2, '0'); // Ensure month is two digits
-                const releaseDate = `${year}-${month}-01`; // Using the first day of the month
+    for (let year = startYear; year <= endYear; year++) {
+        for (let episode = 1; episode <= episodesPerYear; episode++) {
+            const month = String(episode).padStart(2, '0'); // Ensure month is two digits
+            const releaseDate = `${year}-${month}-01`; // Using the first day of the month
 
-                try {
-                    // Call runContest or the appropriate function to insert the episode
-                    await runContest(year, releaseDate);
-                    console.log(`Episode for ${releaseDate} inserted successfully.`);
-                } catch (error) {
-                    console.error(`Error inserting episode for ${releaseDate}:`, error);
-                }
+            try {
+                // Call runContest or the appropriate function to insert the episode
+                await runContest(year, releaseDate);
+                console.log(`Episode for ${releaseDate} inserted successfully.`);
+            } catch (error) {
+                console.error(`Error inserting episode for ${releaseDate}:`, error);
             }
         }
+    }
 }
 
-insert50Episodes();
+async function insert1Episode() {
+    const db = await mysql.createConnection({
+        host: 'localhost',
+        user: "root",
+        password: "192123George",
+        database: "MasterChef"
+    });
+
+    const year = 2006;
+    const month = 10;
+    const releaseDate = `${year}-${month}-01`; // Using the first day of the month
+
+    try {
+        // First, check if there are already 10 episodes this year
+        const checkYearQuery = `
+            SELECT COUNT(*) AS count FROM Episode
+            WHERE YEAR(Release_Date) = ?;
+        `;
+        const [yearResults] = await db.execute(checkYearQuery, [year]);
+        if (yearResults[0].count >= 10) {
+            console.error(`Error: There are already 10 episodes in the year ${year}.`);
+            return; // Stop the function if there are 10 episodes already
+        }
+
+        // Next, check if there is already an episode on the same day
+        const checkDayQuery = `
+            SELECT COUNT(*) AS count FROM Episode
+            WHERE Release_Date = ?;
+        `;
+        const [dayResults] = await db.execute(checkDayQuery, [releaseDate]);
+        if (dayResults[0].count > 0) {
+            console.error(`Error: An episode is already scheduled for ${releaseDate}.`);
+            return; // Stop the function if an episode is scheduled on this day
+        }
+
+        // If checks pass, then call runContest or the appropriate function to insert the episode
+        await runContest(year, releaseDate);
+        console.log(`Episode for ${releaseDate} inserted successfully.`);
+    } catch (error) {
+        console.error(`Error inserting episode for ${releaseDate}:`, error);
+    }
+}
+
+
+
+
+import readline from 'readline';
+import { exec } from 'child_process';
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+const users = {
+    admin: {
+        userId: '1',
+    }
+};
+
+function authenticate(userId) {
+    return users.admin.userId === userId;
+}
+
+function backupDatabase() {
+    const command = `mysqldump -u root -p192123George MasterChef > backup.sql`;
+    exec(command, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Backup error: ${error.message}`);
+            return;
+        }
+        console.log('Backup complete');
+    });
+}
+
+function restoreDatabase() {
+    const command = `mysql -u root -p192123George MasterChef < backup.sql`;
+    exec(command, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Restore error: ${error.message}`);
+            return;
+        }
+        console.log('Restore complete');
+    });
+}
+
+
+function admin() {
+    rl.question('Please enter your user ID: ', (userId) => {
+        if (authenticate(userId)) {
+            rl.question('Do you want to (1) backup or (2) restore the database? Enter 1 for backup or 2 for restore: ', (answer) => {
+                if (answer === '1') {
+                    backupDatabase();
+                } else if (answer === '2') {
+                    restoreDatabase();
+                } else {
+                    console.log('Invalid option. Exiting...');
+                }
+                rl.close();
+            });
+        } else {
+            console.log('Authentication failed. Access denied.');
+            rl.close();
+        }
+    }, { echo: '*' }); // This hides password input, mimic secure password field
+}
+
+
+
+
+
+// Call actions
+
+// TODO: Uncomment for 60 episode insertion
+await insertMultipleEpisodes();
+
+// TODO: Uncomment for 1 episode insertion
+// await insert1Episode();
+
+// TODO: Uncomment for admin backup or restore
+// await admin();
