@@ -1,6 +1,6 @@
 SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 -- In every procedure, we must insert the user_id in the last place
--- so as to check if the cuurent user is the admin or not
+-- so as to check if the curent user is the admin or not
 
 
 -- GET PROCEDURES
@@ -147,6 +147,62 @@ BEGIN
     END IF;
 END$$
 
+
+DROP PROCEDURE IF EXISTS GetAllEpisodes$$
+CREATE PROCEDURE GetAllEpisodes(IN p_ID_User INT)
+BEGIN
+    DECLARE v_Role VARCHAR(255);
+    SELECT Role INTO v_Role FROM User WHERE ID_User = p_ID_User;
+
+    IF v_Role = 'Admin' THEN
+        SELECT
+            ID_Episode AS Episode_ID, Release_Date, Num_of_Episode AS Episode_Number
+        FROM Episode e
+        ORDER BY Episode_ID;
+    ELSE
+        SELECT 'Access Denied. You do not have permission to access this data.' AS ErrorMessage;
+    END IF;
+END$$
+
+
+DROP PROCEDURE IF EXISTS GetEpisodeDetails$$
+CREATE PROCEDURE GetEpisodeDetails(IN p_ID_Episode INT, IN p_ID_User INT)
+BEGIN
+    DECLARE v_Role VARCHAR(255);
+    SELECT Role INTO v_Role FROM User WHERE ID_User = p_ID_User;
+
+    IF v_Role = 'Admin' THEN
+        -- Episode details
+        SELECT
+            ID_Episode AS Episode_ID, Release_Date, Num_of_Episode AS Episode_Number
+        FROM Episode
+        WHERE ID_Episode = p_ID_Episode
+        ORDER BY Episode_ID;
+
+        -- Judges
+        SELECT
+            c.ID_Chef AS Judge_ID, CONCAT(c.First_Name, ' ', c.Last_Name) AS Judge_Name, c.Years_of_Experience, c.Specialization
+        FROM Chef c
+        JOIN Episode_Chef ec ON c.ID_Chef = ec.ID_Chef
+        WHERE ec.ID_Episode = p_ID_Episode AND ec.Judge = TRUE;
+
+        -- National Cuisines and Assigned Chefs-Recipies with Average Ratings
+        SELECT
+            nc.Name AS National_Cuisine, CONCAT(c.First_Name, ' ', c.Last_Name) AS Chef_Name,
+            r.Name AS Recipe_Name, AVG(rt.Rating) AS Average_Rating
+        FROM Episode_Chef_Recipe_National_Cusine ecnc
+        JOIN National_Cusine nc ON ecnc.ID_National_Cusine = nc.ID_National_Cusine
+        JOIN Chef c ON ecnc.ID_Chef = c.ID_Chef
+        JOIN Recipe r ON ecnc.ID_Recipe = r.ID_Recipe
+        LEFT JOIN Rating rt ON rt.ID_Chef = c.ID_Chef AND rt.ID_Episode = p_ID_Episode
+        WHERE ecnc.ID_Episode = p_ID_Episode
+        GROUP BY nc.ID_National_Cusine, c.ID_Chef;
+
+    ELSE
+        SELECT 'Access Denied. You do not have permission to view the details of this episode.' AS Error_Message;
+    END IF;
+END$$
+
 DELIMITER ;
 
 
@@ -154,6 +210,8 @@ DELIMITER ;
 -- CALL GetMeals(1);
 -- CALL GetThematicUnits(1);
 -- CALL GetIngredients(1);
+-- CALL GetAllEpisodes(1);
+-- CALL GetEpisodeDetails(2,1);
 
 
 
@@ -272,12 +330,27 @@ BEGIN
 	END IF;
 END$$
 
+
+DROP PROCEDURE IF EXISTS DeleteEpisode$$
+CREATE PROCEDURE DeleteEpisode(IN p_ID INT, IN p_ID_User INT)
+BEGIN
+	DECLARE v_Role VARCHAR(255);
+	SELECT Role INTO v_Role FROM User WHERE ID_User = p_ID_User;
+
+	IF v_Role = 'Admin' THEN
+		DELETE FROM Episode WHERE ID_Episode = p_ID;
+	ELSE
+		SELECT 'Access Denied. You do not have permission to perform this action.';
+	END IF;
+END$$
+
 DELIMITER ;
 
 
 -- CALL DeleteRecipe(40, 1);
 -- CALL DeleteChef(20, 1);
 -- CALL DeleteMeal(2, 1);
+-- CALL DeleteEpisode(5, 1);
 
 
 

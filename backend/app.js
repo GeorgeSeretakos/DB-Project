@@ -151,27 +151,31 @@ async function findJudgesForEpisode(db, episodeId, chefs) {
 
     while (judges.length < 3) {
         // Generate a SQL condition string with placeholders for the array of chef IDs
-        const placeholders = [...chefs, ...judges].map(() => '?').join(',');
-        // console.log("Placeholders: ", placeholders);
+        let placeholders = '';
+        let queryParams = [];
+
+        if (chefs.length > 0 || judges.length > 0) {
+            placeholders = [...chefs, ...judges].map(() => '?').join(',');
+            queryParams = [...chefs, ...judges];
+        }
 
         // Select 3 chefs that are not in the chefs array
         const judgeQuery = `
             SELECT ID_Chef
             FROM Chef
-            WHERE ID_Chef NOT IN (${placeholders})
+            ${placeholders ? `WHERE ID_Chef NOT IN (${placeholders})` : ''}
             ORDER BY RAND() 
             LIMIT 3;
         `;
 
         try {
-            const [result] = await db.execute(judgeQuery, [...chefs, ...judges]);
+            const [result] = await db.execute(judgeQuery, queryParams);
 
             for (const judge of result) {
                 if (judges.length >= 3) break; // Ensure only 3 judges are selected
 
                 // Check participation of this judge in the last 3 episodes
-                // Koitao an o kritis exei simmetasxei sta proigoumena epeisodia mono os kritis
-                const judgeParticipation  = await checkParticipation(db, episodeId, [judge.ID_Chef], 'Episode_Chef', 'ID_Chef', true);
+                const judgeParticipation = await checkParticipation(db, episodeId, [judge.ID_Chef], 'Episode_Chef', 'ID_Chef', true);
 
                 if (judgeParticipation[judge.ID_Chef] && judgeParticipation[judge.ID_Chef] >= 3) {
                     console.log(`Judge ID ${judge.ID_Chef} has already participated in 3 consecutive episodes, skipping.`);
@@ -186,7 +190,6 @@ async function findJudgesForEpisode(db, episodeId, chefs) {
                 await db.execute(insertJudgeQuery, [episodeId, judge.ID_Chef]);
                 judges.push(judge.ID_Chef); // Store the judge's ID in the array
             }
-
 
         } catch (error) {
             console.error("Error adding judges to episode: ", error);
@@ -352,14 +355,13 @@ async function assignRatings(db, episodeId, chefs, judges) {
 
 
 
-
-
 async function runContest(year, releaseDate) {
     const db = await mysql.createConnection({
         host: 'localhost',
         user: "root",
-        password: "192123George",
-        database: "MasterChef"
+        password: "????",
+        database: "MasterChef",
+        port: 3305
     });
 
     try {
@@ -396,8 +398,6 @@ async function runContest(year, releaseDate) {
     }
 }
 
-// runContest();
-
 async function prepareEpisode(db, currentEpisodeNumber) {
     // Assuming these IDs are defined or fetched elsewhere
     const chefIds = [1, 2, 3];
@@ -425,8 +425,9 @@ async function test() {
     const db = await mysql.createConnection({
         host: 'localhost',
         user: "root",
-        password: "192123George",
-        database: "MasterChef"
+        password: "????",
+        database: "MasterChef",
+        port: 3305
     });
 
     try {
@@ -466,8 +467,9 @@ async function insert1Episode() {
     const db = await mysql.createConnection({
         host: 'localhost',
         user: "root",
-        password: "192123George",
-        database: "MasterChef"
+        password: "????",
+        database: "MasterChef",
+        port: 3305
     });
 
     const year = 2006;
@@ -527,7 +529,7 @@ function authenticate(userId) {
 }
 
 function backupDatabase() {
-    const command = `mysqldump -u root -p192123George MasterChef > backup.sql`;
+    const command = `mysqldump -u root -p???? MasterChef > backup.sql`;
     exec(command, (error, stdout, stderr) => {
         if (error) {
             console.error(`Backup error: ${error.message}`);
@@ -538,7 +540,7 @@ function backupDatabase() {
 }
 
 function restoreDatabase() {
-    const command = `mysql -u root -p192123George MasterChef < backup.sql`;
+    const command = `mysql -u root -p???? MasterChef < backup.sql`;
     exec(command, (error, stdout, stderr) => {
         if (error) {
             console.error(`Restore error: ${error.message}`);
@@ -576,7 +578,7 @@ function admin() {
 // Call actions
 
 // TODO: Uncomment for 60 episode insertion
-await insertMultipleEpisodes();
+// await insertMultipleEpisodes();
 
 // TODO: Uncomment for 1 episode insertion
 // await insert1Episode();

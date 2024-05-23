@@ -1,44 +1,73 @@
 #Query 3.1
 #Μέσος Όρος Αξιολογήσεων (σκορ) ανά μάγειρα και Εθνική κουζίνα
-SELECT
+
+# Μέσος όρος ανά Chef
+SELECT 
     C.ID_Chef,
     C.First_Name,
     C.Last_Name,
-    NC.Name AS National_Cuisine,
     AVG(R.Rating) AS Average_Rating
-FROM
+FROM 
     Chef C
-    INNER JOIN Rating R ON C.ID_Chef = R.ID_Chef
-    INNER JOIN Episode_Chef_Recipe_National_Cusine ECRNC ON C.ID_Chef = ECRNC.ID_Chef
-    INNER JOIN National_Cusine NC ON ECRNC.ID_National_Cusine = NC.ID_National_Cusine
-GROUP BY
-    C.ID_Chef,
-    NC.Name;
+JOIN 
+    Rating R ON C.ID_Chef = R.ID_Chef
+GROUP BY 
+    C.ID_Chef, C.First_Name, C.Last_Name;
+    
+# Μέσος όρος ανά Εθνική Κουζίνα
+SELECT 
+    NC.ID_National_Cusine,
+    NC.Name AS National_Cusine_Name,
+    AVG(R.Rating) AS Average_Rating
+FROM 
+    National_Cusine NC
+JOIN 
+    Recipe RE ON NC.ID_National_Cusine = RE.National_Cusine_ID
+JOIN 
+    Recipe_Chef RC ON RE.ID_Recipe = RC.ID_Recipe
+JOIN 
+    Rating R ON RC.ID_Chef = R.ID_Chef
+GROUP BY 
+    NC.ID_National_Cusine, NC.Name;
+
 
 #Query 3.2 
 #Για δεδομένη Εθνική κουζίνα και έτος, ποιοι μάγειρες ανήκουν σε αυτήν και ποιοι μάγειρες
 #συμμετείχαν σε επεισόδια
-SELECT  DISTINCT
-    Chef.First_Name,
-    Chef.Last_Name,
-    National_Cusine.Name AS National_Cuisine,
-    CASE
-        WHEN Episode_Chef.ID_Chef IS NOT NULL THEN 'Yes'
-        ELSE 'No'
-    END AS Participated_in_Episodes
-FROM 
-    National_Cusine_Chef
-INNER JOIN 
-    Chef ON National_Cusine_Chef.ID_Chef = Chef.ID_Chef
-INNER JOIN 
-    National_Cusine ON National_Cusine_Chef.ID_National_Cusine = National_Cusine.ID_National_Cusine
-LEFT JOIN 
-    Episode_Chef ON Chef.ID_Chef = Episode_Chef.ID_Chef
-LEFT JOIN 
-    Episode ON Episode_Chef.ID_Episode = Episode.ID_Episode AND YEAR(Episode.Release_Date) = '2004'
-WHERE 
-    National_Cusine.Name = 'Greek';
-#mallon ok h thema  tou node???
+
+DELIMITER //
+
+CREATE PROCEDURE Query2(
+    IN cuisine_name VARCHAR(255),
+    IN year_param YEAR
+)
+BEGIN
+    SELECT DISTINCT
+        Chef.First_Name,
+        Chef.Last_Name,
+        National_Cusine.Name AS National_Cuisine,
+        CASE
+            WHEN Episode_Chef.ID_Chef IS NOT NULL THEN 'Yes'
+            ELSE 'No'
+        END AS Participated_in_Episodes
+    FROM 
+        National_Cusine_Chef
+    INNER JOIN 
+        Chef ON National_Cusine_Chef.ID_Chef = Chef.ID_Chef
+    INNER JOIN 
+        National_Cusine ON National_Cusine_Chef.ID_National_Cusine = National_Cusine.ID_National_Cusine
+    LEFT JOIN 
+        Episode_Chef ON Chef.ID_Chef = Episode_Chef.ID_Chef
+    LEFT JOIN 
+        Episode ON Episode_Chef.ID_Episode = Episode.ID_Episode AND YEAR(Episode.Release_Date) = year_param
+    WHERE 
+        National_Cusine.Name = cuisine_name;
+END //
+
+DELIMITER ;
+
+CALL Query2('Greek', 2004);
+
 
 # Query 3.3
 # Βρείτε τους νέους μάγειρες (ηλικία < 30 ετών) που έχουν τις περισσότερες συνταγές.
@@ -56,15 +85,8 @@ GROUP BY
     Chef.ID_Chef
 ORDER BY 
     Recipe_Count DESC;
-    
-    
-    
-    
-    #auto sigoura doulevei
-    
-    
-    
-    
+
+
 # Query 3.4
 # Βρείτε τους μάγειρες που δεν έχουν συμμετάσχει ποτέ σε ως κριτές σε κάποιο επεισόδιο.
 
@@ -76,39 +98,54 @@ FROM
 LEFT JOIN Episode_Chef ON Chef.ID_Chef = Episode_Chef.ID_Chef AND Episode_Chef.Judge = TRUE
 WHERE 
     Episode_Chef.ID_Chef IS NULL;
-    
- #   ok
-    
-    
-    
-    
-    
-    
-    
-    
+
+
 # Query 3.5
 # Ποιοι κριτές έχουν συμμετάσχει στον ίδιο αριθμό επεισοδίων σε διάστημα ενός έτους με περισσότερες από 3 εμφανίσεις;
+# Υποθέσαμε ότι διάστημα ενός έτους θεωρείται ένα ημερολογιακό έτος
 
-SELECT
-    EC1.ID_Chef,
-    C.First_Name,
-    C.Last_Name,
-    COUNT(DISTINCT EC1.ID_Episode) AS Appearances
-FROM
-    Episode_Chef AS EC1
-JOIN
-    Chef C ON EC1.ID_Chef = C.ID_Chef
-JOIN
-    Episode E ON EC1.ID_Episode = E.ID_Episode
-WHERE
-    EC1.Judge = TRUE
-    AND E.Release_Date >= DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR)
-GROUP BY
-    EC1.ID_Chef
-HAVING
-    Appearances > 3;
-    
-#oses fores to treksa menei keno  dyskolo senario??
+DELIMITER //
+
+CREATE PROCEDURE Query5(IN appearances INT)
+BEGIN
+    WITH JudgeAppearances AS (
+        SELECT
+            EC1.ID_Chef,
+            C.First_Name,
+            C.Last_Name,
+            YEAR(E.Release_Date) AS Year,
+            COUNT(DISTINCT EC1.ID_Episode) AS Appearances
+        FROM
+            Episode_Chef EC1
+        JOIN
+            Chef C ON EC1.ID_Chef = C.ID_Chef
+        JOIN
+            Episode E ON EC1.ID_Episode = E.ID_Episode
+        WHERE
+            EC1.Judge = TRUE
+        GROUP BY
+            EC1.ID_Chef, YEAR(E.Release_Date)
+    )
+    SELECT
+        CONCAT(JA1.First_Name, ' ', JA1.Last_Name) AS Judge1,
+        CONCAT(JA2.First_Name, ' ', JA2.Last_Name) AS Judge2,
+        JA1.Year,
+        JA1.Appearances
+    FROM
+        JudgeAppearances JA1
+    JOIN
+        JudgeAppearances JA2 ON JA1.Year = JA2.Year
+            AND JA1.Appearances = JA2.Appearances
+            AND JA1.ID_Chef < JA2.ID_Chef
+            AND JA1.Appearances >= appearances
+    ORDER BY
+        JA1.Year, JA1.Appearances, JA1.ID_Chef, JA2.ID_Chef;
+END //
+
+DELIMITER ;
+
+CALL Query5(3);
+
 
 #Query 3.6
 /*Πολλές συνταγές καλύπτουν περισσότερες από μια ετικέτες. Ανάμεσα σε ζεύγη πεδίων (π.χ. 
@@ -142,12 +179,6 @@ ORDER BY
 LIMIT 3;
 
 
-#δουλευει πρεπει να βαλω κ εναλλακτικο query plan
-
-
-
-
-
 # Query 3.7
 # Βρείτε όλους τους μάγειρες που συμμετείχαν τουλάχιστον 5 λιγότερες φορές από τον μάγειρα με τις περισσότερες συμμετοχές σε επεισόδια.
 
@@ -160,6 +191,8 @@ FROM
     Chef
 JOIN 
     Episode_Chef ON Chef.ID_Chef = Episode_Chef.ID_Chef
+WHERE
+	Episode_Chef.Judge = 0 AND Chef.ID_Chef <> 1
 GROUP BY 
     Chef.ID_Chef
 HAVING 
@@ -168,20 +201,37 @@ HAVING
             COUNT(ID_Episode) AS Episode_Count
         FROM 
             Episode_Chef
+		WHERE
+			Episode_Chef.Judge = 0 AND Chef.ID_Chef <> 1
         GROUP BY 
             ID_Chef
     ) AS MaxCount)
 ORDER BY 
-    Episode_Count DESC;
+    Episode_Count DESC, Chef.ID_Chef;
 
 
+# Query 3.8
+# Σε ποιο επεισόδιο χρησιμοποιήθηκαν τα περισσότερα εξαρτήματα (εξοπλισμός);
 
-
-
-
-
-
-#δουλευει
+SELECT 
+    E.ID_Episode,
+    E.Release_Date,
+    E.Year,
+    E.Num_of_Episode,
+    COUNT(DISTINCT RE.ID_Equipment) AS Equipment_Count
+FROM 
+    Episode E
+JOIN 
+    Episode_Recipe ER ON E.ID_Episode = ER.ID_Episode
+JOIN 
+    Recipe R ON ER.ID_Recipe = R.ID_Recipe
+JOIN 
+    Recipe_Equipment RE ON R.ID_Recipe = RE.ID_Recipe
+GROUP BY 
+    E.ID_Episode, E.Release_Date, E.Year, E.Num_of_Episode
+ORDER BY 
+    Equipment_Count DESC
+LIMIT 1;
 
 
 # Query 3.9
@@ -189,7 +239,7 @@ ORDER BY
 
 SELECT 
     YEAR(E.Release_Date) AS Year,
-    AVG(NV.Carbs_per_Portion) AS Average_Carbs
+    AVG(NV.Carbs_per_Portion) AS Average_Carbs_g
 FROM 
     Episode E
 JOIN 
@@ -203,16 +253,6 @@ GROUP BY
 ORDER BY 
     Year;
 
-
-
-
-
-
-
-
-
-
-#ayto sigoura doulevei
 
 # Query 3.10
 # Ποιες Εθνικές κουζίνες έχουν τον ίδιο αριθμό συμμετοχών σε διαγωνισμούς, σε διάστημα δύο 
@@ -236,11 +276,10 @@ WITH CuisineParticipation AS (
 )
 
 SELECT
-    CP1.Cuisine,
+    CP1.Cuisine AS Cuisine,
     CP1.Year AS Year1,
-    CP1.Participation_Count AS Participation1,
     CP2.Year AS Year2,
-    CP2.Participation_Count AS Participation2
+    CP1.Participation_Count AS Participations
 FROM
     CuisineParticipation CP1
 JOIN
@@ -248,17 +287,7 @@ JOIN
 WHERE
     CP1.Participation_Count = CP2.Participation_Count
 ORDER BY
-    CP1.Cuisine, CP1.Year;
-
-
-
-
-#δουλευει
-
-
-
-
-
+    Year1, Participations DESC, Year2, Cuisine;
 
 
 # Query 3.11
@@ -282,14 +311,6 @@ GROUP BY
 ORDER BY 
     Total_Score DESC
 LIMIT 5;
-
-
-
-
-
-
-#δεν δουλευει μενει κενο επειδη το rating einai keno
-
 
 
 # Query 3.12
@@ -317,46 +338,55 @@ SELECT
 FROM
     RankedEpisodes
 WHERE
-    Difficulty_Rank = 1;
-
-
-
-
-
-
-#δουλευει
-
-
+    Difficulty_Rank = 1
+ORDER BY
+	Year, ID_Episode;
 
 
 # Query 3.13
 # Ποιο επεισόδιο συγκέντρωσε τον χαμηλότερο βαθμό επαγγελματικής κατάρτισης (κριτές και μάγειρες);
 
-SELECT 
+WITH SpecializationRank AS (
+    SELECT
+        ID_Chef,
+        CASE 
+            WHEN Specialization = 'Third cook' THEN 1
+            WHEN Specialization = 'Second cook' THEN 2
+            WHEN Specialization = 'First cook' THEN 3
+            WHEN Specialization = 'Assistant chef' THEN 4
+            WHEN Specialization = 'Head chef' THEN 5
+        END AS Specialization_Rank
+    FROM 
+        Chef
+),
+EpisodeExperience AS (
+    SELECT
+        EC.ID_Episode,
+        AVG(C.Years_of_Experience) AS Avg_Experience,
+        AVG(SR.Specialization_Rank) AS Avg_Specialization
+    FROM 
+        Episode_Chef EC
+    JOIN 
+        Chef C ON EC.ID_Chef = C.ID_Chef
+    JOIN 
+        SpecializationRank SR ON C.ID_Chef = SR.ID_Chef
+    GROUP BY 
+        EC.ID_Episode
+)
+SELECT
     E.ID_Episode,
     E.Release_Date,
-    SUM(Chef.Years_of_Experience) AS Total_Experience
+    E.Year,
+    E.Num_of_Episode,
+    EE.Avg_Experience,
+    EE.Avg_Specialization
 FROM 
     Episode E
 JOIN 
-    Episode_Chef EC ON E.ID_Episode = EC.ID_Episode
-JOIN 
-    Chef ON EC.ID_Chef = Chef.ID_Chef
-GROUP BY 
-    E.ID_Episode
+    EpisodeExperience EE ON E.ID_Episode = EE.ID_Episode
 ORDER BY 
-    Total_Experience ASC
-LIMIT 1;
-
-#δουλεύει
-
-
-
-
-
-
-
-
+    EE.Avg_Specialization ASC,
+    EE.Avg_Experience ASC;
 
 
 # Query 3.14
@@ -378,26 +408,11 @@ ORDER BY
 LIMIT 1;
 
 
-
-
-#οκ
-
-
-
-
-
-
 # Query 3.15
 # Ποιες ομάδες τροφίμων δεν έχουν εμφανιστεί ποτέ στον διαγωνισμό;
-
 
 SELECT fc.Name AS Food_Category
 FROM Food_Category fc
 LEFT JOIN Ingredient i ON fc.Code = i.ID_Food_Category
 GROUP BY fc.Name
 HAVING COUNT(i.ID_Ingredient) = 0;
-
-#οκ
-
-
-
