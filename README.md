@@ -208,5 +208,3 @@ Contributions are what make the open-source community such a fantastic place to 
 - Giorgos Seretakos - g.seretakos@gmail.com
 - Stelios Katsis - stelioskatsis12@gmail.com
 - Giannis Mertziotis - giannismertz@gmail.com
-
-Project Link: https://github.com/GeorgeSeretakos/DB-Project.git
