@@ -1,6 +1,6 @@
 # MasterChef SQL Database and Queries
 
-In this folder all the sql code is contained, for **table creation and deletion****, table population**, **CRUD operations** and **queries**.
+In this folder all the sql code is contained, for **table creation and deletion**, **table population**, **CRUD operations** and **queries**.
 
 ## Files
 
